@@ -1,0 +1,8 @@
+{
+  "name": "WD Photos",
+  "description": "Professional photography showcase, client proofing galleries, and photo collection manager for WD Photos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
