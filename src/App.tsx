@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sparkles, Heart, X, ZoomIn, Camera } from 'lucide-react';
+import { X, ZoomIn } from 'lucide-react';
 
 interface GridPhoto {
   id: string;
@@ -91,46 +91,26 @@ export function App() {
       <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-purple-300/30 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header Section */}
-        <header id="gallery-header" className="text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center space-x-2 text-[#be185d] mb-3">
-            <Sparkles className="w-4 h-4 text-[#be185d]/80 animate-pulse" />
-            <span className="text-xs uppercase tracking-[0.25em] font-semibold text-[#9d174d]">
-              Curated Photography Portfolio
-            </span>
-            <Sparkles className="w-4 h-4 text-[#be185d]/80 animate-pulse" />
-          </div>
-
+        {/* Simple Header */}
+        <header id="gallery-header" className="text-center mb-10 sm:mb-14">
           <h1
             id="page-title"
-            className="text-4xl sm:text-6xl font-bold tracking-tight text-[#9d174d] mb-3 leading-tight"
+            className="text-4xl sm:text-6xl font-bold tracking-tight text-[#9d174d] mb-2 leading-tight"
             style={{
               fontFamily: "'Playfair Display', 'Cormorant Garamond', serif",
-              textShadow: '0 2px 10px rgba(157, 23, 77, 0.08)',
             }}
           >
             Gabriella Miles
           </h1>
-
-          <p className="text-base sm:text-lg text-[#be185d] font-medium max-w-xl mx-auto mb-4">
-            A 9-Photo Exhibition &bull; 3 Rows &times; 3 Columns of Equal Dimensions
+          <p
+            id="dob-text"
+            className="text-base sm:text-lg text-[#be185d] font-medium tracking-wide"
+            style={{
+              fontFamily: "'Playfair Display', 'Cormorant Garamond', serif",
+            }}
+          >
+            Date of Birth: 06/15/12
           </p>
-
-          <div className="flex items-center justify-center space-x-3 mb-6">
-            <div className="h-[1px] w-12 sm:w-16 bg-gradient-to-r from-transparent to-[#be185d]/40" />
-            <Heart className="w-4 h-4 text-[#be185d] fill-[#be185d]/20" />
-            <div className="h-[1px] w-12 sm:w-16 bg-gradient-to-l from-transparent to-[#be185d]/40" />
-          </div>
-
-          <div className="inline-flex items-center space-x-2 px-5 py-2 rounded-full bg-white/80 backdrop-blur-xs border border-pink-200 text-[#831843] shadow-xs">
-            <Camera className="w-4 h-4 text-[#9d174d]" />
-            <span className="text-xs sm:text-sm font-medium">
-              Date of Birth:
-            </span>
-            <span className="text-xs sm:text-sm font-semibold tracking-wider text-[#9d174d]">
-              06/15/12
-            </span>
-          </div>
         </header>
 
         {/* 9 Photo Grid: 3 Rows x 3 Columns (All Equal Dimensions) */}
