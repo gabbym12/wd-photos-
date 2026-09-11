@@ -12,66 +12,66 @@ interface GridPhoto {
 const NINE_PHOTOS: GridPhoto[] = [
   {
     id: 'photo-1',
-    title: 'The Balcony Whisper',
-    description: 'Quiet morning moments overlooking the shimmering waters of Lake Como.',
-    category: 'Celebrations',
-    url: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&h=800&q=80',
+    title: 'Football',
+    description: 'Powerful plays, fast breaks, and the teamwork that makes every drive count.',
+    category: 'Team Sports',
+    url: 'https://images.unsplash.com/photo-1508344928928-7165b67de128?auto=format&fit=crop&w=800&h=800&q=80',
   },
   {
     id: 'photo-2',
-    title: 'Golden Hour Vineyard',
-    description: 'Warm afternoon light spilling across rolling hills and century-old grapevines.',
-    category: 'Nature',
-    url: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&h=800&q=80',
+    title: 'Baseball',
+    description: 'A classic swing, a perfectly placed pitch, and the excitement of the diamond.',
+    category: 'Team Sports',
+    url: 'https://images.unsplash.com/photo-1566577739112-5180d4bf9390?auto=format&fit=crop&w=800&h=800&q=80',
   },
   {
     id: 'photo-3',
-    title: 'Studio Silhouette',
-    description: 'High-contrast portrait study exploring soft shadows and natural facial geometry.',
-    category: 'Portraits',
-    url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&h=800&q=80',
+    title: 'Soccer',
+    description: 'Quick footwork, creative passes, and nonstop energy from kickoff to the final whistle.',
+    category: 'Team Sports',
+    url: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&h=800&q=80',
   },
   {
     id: 'photo-4',
-    title: 'Echoes of the North',
-    description: 'Rugged Nordic coastline framed by dramatic mountain peaks and sea mist.',
-    category: 'Landscapes',
-    url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&h=800&q=80',
+    title: 'Basketball',
+    description: 'Fast cuts, high-flying rebounds, and the focus needed for the perfect shot.',
+    category: 'Team Sports',
+    url: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&h=800&q=80',
   },
   {
     id: 'photo-5',
-    title: 'Modernist Geometry',
-    description: 'Clean architectural lines and cantilevered glass facades in sharp daylight.',
-    category: 'Architecture',
-    url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&h=800&q=80',
+    title: 'Flag Football',
+    description: 'Agile routes, smart defense, and the excitement of a game built on speed.',
+    category: 'Team Sports',
+    url: 'https://images.unsplash.com/photo-1517466787929-bc37dc4c4f5d?auto=format&fit=crop&w=800&h=800&q=80',
   },
   {
     id: 'photo-6',
-    title: 'Linen & Morning Light',
-    description: 'Soft organic textures and diffused sunrise shadows in a creative studio.',
-    category: 'Editorial',
-    url: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=800&h=800&q=80',
+    title: 'Volleyball',
+    description: 'Strong serves, quick sets, and perfectly timed teamwork above the net.',
+    category: 'Team Sports',
+    url: 'https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=800&h=800&q=80',
   },
   {
     id: 'photo-7',
-    title: 'Misty Mountain Pines',
-    description: 'Atmospheric mountain ridge blanketed by morning fog and dense evergreens.',
-    category: 'Wilderness',
-    url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&h=800&q=80',
+    title: 'Gymnastics',
+    description: 'Strength, balance, and graceful movement brought together in every routine.',
+    category: 'Individual Sports',
+    url: 'https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?auto=format&fit=crop&w=800&h=800&q=80',
   },
   {
     id: 'photo-8',
-    title: 'Seaside Solitude',
-    description: 'Gentle turquoise waves washing against pristine, sunlit sands.',
-    category: 'Seascapes',
-    url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&h=800&q=80',
+    title: 'Swim',
+    description: 'Determination and rhythm carry every swimmer through the water and toward the finish.',
+    category: 'Individual Sports',
+    url: 'https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=800&h=800&q=80',
   },
   {
     id: 'photo-9',
-    title: 'Urban Twilight Reflections',
-    description: 'Vibrant city lights reflecting off glistening streets after a gentle rain.',
-    category: 'Urban',
-    url: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=800&h=800&q=80',
+    title: 'Tennis',
+    description: 'Quick reactions, precise serves, and the competitive spirit of every rally.',
+    category: 'Individual Sports',
+    url: 'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=800&h=800&q=80',
   },
 ];
 
@@ -100,7 +100,7 @@ export function App() {
               fontFamily: "'Playfair Display', 'Cormorant Garamond', serif",
             }}
           >
-            Gabriella Miles
+            Gabriella Miles Sports
           </h1>
           <p
             id="dob-text"
@@ -179,7 +179,7 @@ export function App() {
 
         {/* Footer */}
         <footer className="mt-16 pt-8 border-t border-pink-200/60 text-center text-xs text-neutral-500">
-          <p>WD Photos &bull; Gabriella Miles Portfolio &bull; 9-Photo Showcase</p>
+            <p>WD Photos &bull; Gabriella Miles Sports &bull; 9-Sport Showcase</p>
         </footer>
       </div>
 
