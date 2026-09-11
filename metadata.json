@@ -1,6 +1,6 @@
 {
   "name": "WD Photos",
-  "description": "Professional photography showcase, client proofing galleries, and photo collection manager for WD Photos.",
+  "description": "A 9-photo gallery in a 3x3 equal dimension grid by Gabriella Miles.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
