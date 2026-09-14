@@ -63,29 +63,29 @@ const SPORTS_PHOTOS: SportPhoto[] = [
     accent: '#be185d',
   },
 
-  // Other Signature Sports
+  // 3 Basketball Images
   {
-    id: 'soccer',
-    name: 'Soccer',
-    category: 'Soccer',
-    description: 'Quick footwork, tactical passing, and striking goals on the open pitch.',
-    url: '/soccer.jpg',
-    accent: '#9d174d',
-  },
-  {
-    id: 'basketball',
+    id: 'basketball-1',
     name: 'Basketball',
     category: 'Basketball',
     description: 'Fast breaks, precision dribbling, and soaring high to score at the rim.',
-    url: '/basketball.jpg',
-    accent: '#be185d',
+    url: '/basketball-1.jpg',
+    accent: '#9d174d',
   },
   {
-    id: 'flag-football',
-    name: 'Flag Football',
-    category: 'Flag Football',
-    description: 'Agile route running, lightning acceleration, and clutch flag pulls.',
-    url: '/flag-football.jpg',
+    id: 'basketball-2',
+    name: 'Basketball',
+    category: 'Basketball',
+    description: 'Lockdown defense and smooth transition offense in full flow on the hardwood.',
+    url: '/basketball-2.jpg',
+    accent: '#9d174d',
+  },
+  {
+    id: 'basketball-3',
+    name: 'Basketball',
+    category: 'Basketball',
+    description: 'Sinking the buzzer-beater through the net under bright arena stadium lights.',
+    url: '/basketball-3.jpg',
     accent: '#9d174d',
   },
 ];
@@ -142,7 +142,7 @@ export function App() {
           </p>
 
           <p className="mt-3 text-neutral-600 text-sm max-w-lg mx-auto">
-            Featuring 3 Football highlights, 3 Baseball highlights, and signature sports in an equal 3&times;3 showcase.
+            Featuring 3 Football highlights, 3 Baseball highlights, and 3 Basketball highlights in an equal 3&times;3 showcase.
           </p>
         </header>
 
