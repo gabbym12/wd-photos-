@@ -1,89 +1,107 @@
-import { useState } from 'react';
-import { X, ZoomIn } from 'lucide-react';
+import React, { useState } from 'react';
+import { ZoomIn, X, Trophy, Sparkles, Heart } from 'lucide-react';
 
-interface GridPhoto {
+export interface SportPhoto {
   id: string;
-  title: string;
-  description: string;
+  name: string;
   category: string;
+  description: string;
   url: string;
+  accent: string;
 }
 
-const NINE_PHOTOS: GridPhoto[] = [
+const SPORTS_PHOTOS: SportPhoto[] = [
   {
-    id: 'photo-1',
-    title: 'Football',
-    description: 'Powerful plays, fast breaks, and the teamwork that makes every drive count.',
+    id: 'football',
+    name: 'Football',
     category: 'Team Sports',
-    url: 'https://images.unsplash.com/photo-1508344928928-7165b67de128?auto=format&fit=crop&w=800&h=800&q=80',
+    description: 'Game day energy under the lights, teamwork, and powerful gridiron action.',
+    url: '/football.jpg',
+    accent: '#9d174d',
   },
   {
-    id: 'photo-2',
-    title: 'Baseball',
-    description: 'A classic swing, a perfectly placed pitch, and the excitement of the diamond.',
-    category: 'Team Sports',
-    url: 'https://images.unsplash.com/photo-1566577739112-5180d4bf9390?auto=format&fit=crop&w=800&h=800&q=80',
+    id: 'baseball',
+    name: 'Baseball',
+    category: 'Diamond Sports',
+    description: 'Stepping up to the plate with focus, precision pitching, and home run swings.',
+    url: '/baseball.jpg',
+    accent: '#be185d',
   },
   {
-    id: 'photo-3',
-    title: 'Soccer',
-    description: 'Quick footwork, creative passes, and nonstop energy from kickoff to the final whistle.',
-    category: 'Team Sports',
-    url: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&h=800&q=80',
+    id: 'soccer',
+    name: 'Soccer',
+    category: 'Field Sports',
+    description: 'Quick footwork, tactical passing, and striking goals on the open pitch.',
+    url: '/soccer.jpg',
+    accent: '#9d174d',
   },
   {
-    id: 'photo-4',
-    title: 'Basketball',
-    description: 'Fast cuts, high-flying rebounds, and the focus needed for the perfect shot.',
-    category: 'Team Sports',
-    url: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&h=800&q=80',
+    id: 'basketball',
+    name: 'Basketball',
+    category: 'Court Sports',
+    description: 'Fast breaks, precision dribbling, and soaring high to score at the rim.',
+    url: '/basketball.jpg',
+    accent: '#be185d',
   },
   {
-    id: 'photo-5',
-    title: 'Flag Football',
-    description: 'Agile routes, smart defense, and the excitement of a game built on speed.',
-    category: 'Team Sports',
-    url: 'https://images.unsplash.com/photo-1517466787929-bc37dc4c4f5d?auto=format&fit=crop&w=800&h=800&q=80',
+    id: 'flag-football',
+    name: 'Flag Football',
+    category: 'Agility Sports',
+    description: 'Agile route running, lightning acceleration, and clutch flag pulls.',
+    url: '/flag-football.jpg',
+    accent: '#9d174d',
   },
   {
-    id: 'photo-6',
-    title: 'Volleyball',
-    description: 'Strong serves, quick sets, and perfectly timed teamwork above the net.',
-    category: 'Team Sports',
-    url: 'https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=800&h=800&q=80',
+    id: 'volleyball',
+    name: 'Volleyball',
+    category: 'Net Sports',
+    description: 'Synchronized team sets, diving digs, and high-flying spikes over the net.',
+    url: '/volleyball.jpg',
+    accent: '#be185d',
   },
   {
-    id: 'photo-7',
-    title: 'Gymnastics',
-    description: 'Strength, balance, and graceful movement brought together in every routine.',
-    category: 'Individual Sports',
-    url: 'https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?auto=format&fit=crop&w=800&h=800&q=80',
+    id: 'gymnastics',
+    name: 'Gymnastics',
+    category: 'Artistic Sports',
+    description: 'Grace, balance beam poise, strength, and flawless tumbling routines.',
+    url: '/gymnastics.jpg',
+    accent: '#9d174d',
   },
   {
-    id: 'photo-8',
-    title: 'Swim',
-    description: 'Determination and rhythm carry every swimmer through the water and toward the finish.',
-    category: 'Individual Sports',
-    url: 'https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=800&h=800&q=80',
+    id: 'swim',
+    name: 'Swim',
+    category: 'Aquatics',
+    description: 'Diving in off the blocks, powerful stroke technique, and speed in the lanes.',
+    url: '/swim.jpg',
+    accent: '#be185d',
   },
   {
-    id: 'photo-9',
-    title: 'Tennis',
-    description: 'Quick reactions, precise serves, and the competitive spirit of every rally.',
-    category: 'Individual Sports',
-    url: 'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=800&h=800&q=80',
+    id: 'tennis',
+    name: 'Tennis',
+    category: 'Racquet Sports',
+    description: 'Aces, rapid baseline rallies, and finesse volleys across the court.',
+    url: '/tennis.jpg',
+    accent: '#9d174d',
   },
 ];
 
 export function App() {
-  const [selectedPhoto, setSelectedPhoto] = useState<GridPhoto | null>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<SportPhoto | null>(null);
+  const [favorites, setFavorites] = useState<string[]>([]);
+
+  const toggleFavorite = (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setFavorites((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
 
   return (
     <div
-      id="gallery-page"
+      id="sports-gallery-page"
       className="min-h-screen bg-[#f3e8ff] py-10 px-4 sm:px-6 lg:px-8 relative overflow-x-hidden font-sans"
       style={{
-        background: 'radial-gradient(circle at 50% 10%, #faf5ff 0%, #f3e8ff 50%, #e9d5ff 100%)',
+        background: 'radial-gradient(circle at 50% 8%, #faf5ff 0%, #f3e8ff 45%, #e9d5ff 100%)',
       }}
     >
       {/* Background ambient accents */}
@@ -91,105 +109,164 @@ export function App() {
       <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-purple-300/30 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Simple Header */}
+        {/* Header with Gabriella Miles and Date of Birth */}
         <header id="gallery-header" className="text-center mb-10 sm:mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-pink-100 border border-pink-200 text-[#9d174d] text-xs font-semibold uppercase tracking-wider mb-3">
+            <Trophy className="w-3.5 h-3.5" />
+            <span>Sports Portfolio & Showcase</span>
+          </div>
+
           <h1
             id="page-title"
-            className="text-4xl sm:text-6xl font-bold tracking-tight text-[#9d174d] mb-2 leading-tight"
+            className="text-4xl sm:text-6xl font-bold tracking-tight text-[#9d174d] mb-2 leading-tight drop-shadow-xs"
             style={{
               fontFamily: "'Playfair Display', 'Cormorant Garamond', serif",
             }}
           >
-            Gabriella Miles Sports
+            Gabriella Miles
           </h1>
+
           <p
             id="dob-text"
-            className="text-base sm:text-lg text-[#be185d] font-medium tracking-wide"
+            className="text-base sm:text-xl text-[#be185d] font-medium tracking-wide"
             style={{
               fontFamily: "'Playfair Display', 'Cormorant Garamond', serif",
             }}
           >
             Date of Birth: 06/15/12
           </p>
+
+          <p className="mt-3 text-neutral-600 text-sm max-w-lg mx-auto">
+            Featuring 9 signature sports in a 3&times;3 showcase: Football, Baseball, Soccer, Basketball, Flag Football, Volleyball, Gymnastics, Swim, and Tennis.
+          </p>
         </header>
 
-        {/* 9 Photo Grid: 3 Rows x 3 Columns (All Equal Dimensions) */}
-        <main id="photo-grid-container">
+        {/* 9 Sports in 3x3 Equal Dimensions Grid */}
+        <main id="sports-grid-container">
           <div
-            id="photos-3x3-grid"
+            id="sports-3x3-grid"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
           >
-            {NINE_PHOTOS.map((photo, index) => (
-              <article
-                key={photo.id}
-                id={`photo-card-${photo.id}`}
-                onClick={() => setSelectedPhoto(photo)}
-                className="group cursor-pointer bg-white/90 backdrop-blur-xs rounded-2xl overflow-hidden border border-pink-200/80 shadow-[0_10px_30px_rgba(157,23,77,0.06)] hover:shadow-[0_20px_40px_rgba(157,23,77,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col"
-              >
-                {/* Equal Dimension (1:1 Aspect Ratio Square Image) */}
-                <div className="relative w-full aspect-square overflow-hidden bg-pink-50">
-                  <img
-                    src={photo.url}
-                    alt={photo.title}
-                    loading={index < 3 ? 'eager' : 'lazy'}
-                    className="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 justify-between">
-                    <span className="text-white text-xs font-medium bg-black/40 backdrop-blur-md px-3 py-1 rounded-full">
-                      {photo.category}
-                    </span>
-                    <span className="text-white bg-pink-600/90 rounded-full p-2">
-                      <ZoomIn className="w-4 h-4" />
-                    </span>
-                  </div>
-                </div>
+            {SPORTS_PHOTOS.map((sport, index) => {
+              const isFav = favorites.includes(sport.id);
+              return (
+                <article
+                  key={sport.id}
+                  id={`sport-card-${sport.id}`}
+                  onClick={() => setSelectedPhoto(sport)}
+                  className="group cursor-pointer bg-white/95 backdrop-blur-xs rounded-2xl overflow-hidden border border-pink-200/90 shadow-[0_10px_30px_rgba(157,23,77,0.07)] hover:shadow-[0_20px_45px_rgba(157,23,77,0.16)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col"
+                >
+                  {/* Equal 1:1 Aspect Ratio Square Image Container */}
+                  <div className="relative w-full aspect-square overflow-hidden bg-pink-100/70">
+                    <img
+                      src={sport.url}
+                      alt={sport.name}
+                      loading={index < 3 ? 'eager' : 'lazy'}
+                      className="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
+                    />
 
-                {/* Title and Descriptive Text */}
-                <div className="p-5 flex-1 flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-[11px] uppercase tracking-wider font-semibold text-[#be185d] bg-pink-50 px-2.5 py-0.5 rounded-full border border-pink-100">
-                        {photo.category}
-                      </span>
-                      <span className="text-xs font-mono text-neutral-400">
-                        0{index + 1} / 09
+                    {/* Favorite Button on Top-Right */}
+                    <button
+                      id={`fav-btn-${sport.id}`}
+                      onClick={(e) => toggleFavorite(sport.id, e)}
+                      aria-label={`Favorite ${sport.name}`}
+                      className="absolute top-3 right-3 p-2 rounded-full bg-white/80 hover:bg-white backdrop-blur-md shadow-md text-pink-600 transition-transform active:scale-90"
+                    >
+                      <Heart
+                        className={`w-4 h-4 ${isFav ? 'fill-pink-600 text-pink-600' : 'text-neutral-600'}`}
+                      />
+                    </button>
+
+                    {/* Sport Index Badge on Top-Left */}
+                    <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white font-mono text-[11px] px-2.5 py-0.5 rounded-full">
+                      0{index + 1}
+                    </div>
+
+                    {/* REQUIRED: Text on the BOTTOM OF THE IMAGE */}
+                    <div
+                      id={`bottom-label-${sport.id}`}
+                      className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent pt-8 pb-3 px-3.5 flex items-end justify-between text-white"
+                    >
+                      <div>
+                        <p className="text-[10px] tracking-widest text-pink-200 uppercase font-medium">
+                          Sport
+                        </p>
+                        <h2 className="text-base sm:text-lg font-bold tracking-wide uppercase drop-shadow-md text-white leading-tight">
+                          {sport.name}
+                        </h2>
+                      </div>
+                      <span className="text-[11px] bg-white/25 backdrop-blur-xs px-2.5 py-0.5 rounded-full font-medium text-white/95">
+                        {sport.category}
                       </span>
                     </div>
-                    <h3
-                      id={`title-${photo.id}`}
-                      className="text-xl font-bold text-[#9d174d] mb-2 leading-snug group-hover:text-[#be185d] transition-colors"
-                      style={{
-                        fontFamily: "'Playfair Display', serif",
-                      }}
-                    >
-                      {photo.title}
-                    </h3>
-                    <p
-                      id={`desc-${photo.id}`}
-                      className="text-neutral-600 text-sm leading-relaxed"
-                    >
-                      {photo.description}
-                    </p>
+
+                    {/* Subtle Hover Action Layer */}
+                    <div className="absolute inset-0 bg-pink-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center justify-center">
+                      <span className="bg-white/90 text-[#9d174d] rounded-full p-3 shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                        <ZoomIn className="w-5 h-5" />
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </article>
-            ))}
+
+                  {/* Card Content Below Image */}
+                  <div className="p-5 flex-1 flex flex-col justify-between bg-white">
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-[11px] uppercase tracking-wider font-semibold text-[#be185d] bg-pink-50 px-2.5 py-0.5 rounded-full border border-pink-100">
+                          {sport.category}
+                        </span>
+                        <span className="text-xs font-mono text-neutral-400">
+                          0{index + 1} / 09
+                        </span>
+                      </div>
+
+                      <h3
+                        id={`title-${sport.id}`}
+                        className="text-xl font-bold text-[#9d174d] mb-1.5 leading-snug group-hover:text-[#be185d] transition-colors"
+                        style={{
+                          fontFamily: "'Playfair Display', serif",
+                        }}
+                      >
+                        {sport.name}
+                      </h3>
+
+                      <p
+                        id={`desc-${sport.id}`}
+                        className="text-neutral-600 text-sm leading-relaxed"
+                      >
+                        {sport.description}
+                      </p>
+                    </div>
+
+                    <div className="mt-4 pt-3 border-t border-pink-100 flex items-center justify-between text-xs text-[#be185d] font-medium">
+                      <span>View details</span>
+                      <Sparkles className="w-3.5 h-3.5 opacity-70" />
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </main>
 
         {/* Footer */}
-        <footer className="mt-16 pt-8 border-t border-pink-200/60 text-center text-xs text-neutral-500">
-            <p>WD Photos &bull; Gabriella Miles Sports &bull; 9-Sport Showcase</p>
+        <footer className="mt-16 pt-8 border-t border-pink-200/70 text-center text-xs text-neutral-500 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="font-medium text-neutral-600">
+            WD Photos &bull; Gabriella Miles Sports Showcase
+          </p>
+          <p>
+            9 Signature Sports &bull; High Resolution Gallery
+          </p>
         </footer>
       </div>
 
       {/* Lightbox Modal */}
       {selectedPhoto && (
         <div
-          id="photo-modal"
+          id="photo-lightbox-modal"
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200"
           onClick={() => setSelectedPhoto(null)}
         >
           <div
@@ -197,35 +274,46 @@ export function App() {
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              id="close-modal-btn"
+              id="close-lightbox-btn"
               onClick={() => setSelectedPhoto(null)}
               className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/60 text-white hover:bg-black transition-colors"
-              aria-label="Close photo preview"
+              aria-label="Close sport preview"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="w-full aspect-square bg-neutral-900">
+            <div className="relative w-full aspect-square bg-neutral-900">
               <img
                 src={selectedPhoto.url}
-                alt={selectedPhoto.title}
+                alt={selectedPhoto.name}
                 className="w-full h-full object-cover"
               />
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5 text-white">
+                <span className="text-xs uppercase tracking-widest text-pink-300 font-semibold">
+                  {selectedPhoto.category}
+                </span>
+                <h2
+                  className="text-3xl font-bold mt-0.5 drop-shadow-md text-white"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  {selectedPhoto.name}
+                </h2>
+              </div>
             </div>
 
             <div className="p-6">
-              <span className="text-xs uppercase tracking-wider font-semibold text-[#be185d]">
-                {selectedPhoto.category}
-              </span>
-              <h2
-                className="text-2xl font-bold text-[#9d174d] mt-1 mb-2"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
-                {selectedPhoto.title}
-              </h2>
-              <p className="text-neutral-700 text-sm leading-relaxed">
+              <p className="text-neutral-700 text-sm sm:text-base leading-relaxed">
                 {selectedPhoto.description}
               </p>
+              <div className="mt-5 pt-4 border-t border-pink-100 flex items-center justify-between text-xs text-neutral-500">
+                <span>Athlete Showcase &bull; Gabriella Miles</span>
+                <button
+                  onClick={() => setSelectedPhoto(null)}
+                  className="px-4 py-2 rounded-xl bg-pink-700 text-white font-medium hover:bg-pink-800 transition-colors"
+                >
+                  Close Preview
+                </button>
+              </div>
             </div>
           </div>
         </div>

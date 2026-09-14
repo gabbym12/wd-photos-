@@ -502,5 +502,33 @@ export const INITIAL_PHOTOS: Photo[] = [
       dimensions: '5184 × 7728 px'
     },
     tags: ['ceramics', 'craft', 'terracotta', 'still life', 'warm']
+  },
+  {
+    id: 'photo-17',
+    title: 'Football Game Day',
+    caption: 'Dynamic game-day action under the stadium floodlights, capturing raw athleticism and spirit.',
+    url: '/football.jpg',
+    albumId: 'album-editorial-linen',
+    albumTitle: 'Aura & Texture',
+    category: 'editorial',
+    orientation: 'landscape',
+    date: '2026-09-14',
+    location: 'MetLife Stadium, New Jersey',
+    photographer: 'Gabriella Miles (WD Photos)',
+    featured: true,
+    isFavorite: true,
+    rating: 5,
+    clientStatus: 'approved',
+    clientNotes: 'Crisp action shot with great stadium lighting!',
+    exif: {
+      camera: 'Sony α1',
+      lens: 'FE 400mm F2.8 GM OSS',
+      focalLength: '400mm',
+      aperture: 'f/2.8',
+      shutterSpeed: '1/2500s',
+      iso: 800,
+      dimensions: '8640 × 5760 px'
+    },
+    tags: ['football', 'sports', 'stadium', 'action', 'athletic', 'game day']
   }
 ];
