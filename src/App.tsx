@@ -54,24 +54,24 @@ const NINE_PHOTOS: GridPhoto[] = [
   },
   {
     id: 'photo-7',
-    title: 'Soccer',
-    description: 'Quick footwork, creative passes, and nonstop energy from kickoff to the final whistle.',
-    category: 'Individual Sports',
-    url: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&h=800&q=80',
+    title: 'Basketball',
+    description: 'Fast cuts, high-flying rebounds, and the focus needed for the perfect shot.',
+    category: 'Team Sports',
+    url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiAoSy5F8sIUuHO44ZMQKRC9yN26i4WTyvQAwoEQkVKg&s=10',
   },
   {
     id: 'photo-8',
     title: 'Basketball',
-    description: 'Fast cuts, high-flying rebounds, and the focus needed for the perfect shot.',
+    description: 'Quick hands, sharp passes, and the energy of every play on the court.',
     category: 'Team Sports',
-    url: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&h=800&q=80',
+    url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZhdNUlkmTWB-lT_sZHFUcJ_Ys2fJ3rfTMMIrmBL5SnA&s=10',
   },
   {
     id: 'photo-9',
-    title: 'Volleyball',
-    description: 'Strong serves, quick sets, and perfectly timed teamwork above the net.',
+    title: 'Basketball',
+    description: 'Fast breaks, precision dribbling, and soaring high to score at the rim.',
     category: 'Team Sports',
-    url: 'https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=800&h=800&q=80',
+    url: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&h=800&q=80',
   },
 ];
 
