@@ -11,26 +11,63 @@ export interface SportPhoto {
 }
 
 const SPORTS_PHOTOS: SportPhoto[] = [
+  // 3 Football Images
   {
-    id: 'football',
+    id: 'football-1',
     name: 'Football',
-    category: 'Team Sports',
-    description: 'Game day energy under the lights, teamwork, and powerful gridiron action.',
+    category: 'Football',
+    description: 'Game day intensity, stadium lights, and teamwork on the gridiron.',
     url: '/football.jpg',
     accent: '#9d174d',
   },
   {
-    id: 'baseball',
+    id: 'football-2',
+    name: 'Football',
+    category: 'Football',
+    description: 'High-energy offensive drive, crisp passing, and athletic pursuit under the floodlights.',
+    url: '/football-2.jpg',
+    accent: '#9d174d',
+  },
+  {
+    id: 'football-3',
+    name: 'Football',
+    category: 'Football',
+    description: 'Breaking through the defensive line with speed, power, and team determination.',
+    url: '/football-3.jpg',
+    accent: '#9d174d',
+  },
+
+  // 3 Baseball Images
+  {
+    id: 'baseball-1',
     name: 'Baseball',
-    category: 'Diamond Sports',
-    description: 'Stepping up to the plate with focus, precision pitching, and home run swings.',
-    url: '/baseball.jpg',
+    category: 'Baseball',
+    description: 'Stepping up to the plate with razor-sharp focus, ready to drive the ball deep into the outfield.',
+    url: '/baseball-1.jpg',
     accent: '#be185d',
   },
   {
+    id: 'baseball-2',
+    name: 'Baseball',
+    category: 'Baseball',
+    description: 'High-speed pitch delivery from the mound, executing pinpoint command and control.',
+    url: '/baseball-2.jpg',
+    accent: '#be185d',
+  },
+  {
+    id: 'baseball-3',
+    name: 'Baseball',
+    category: 'Baseball',
+    description: 'Fielding a grounder at shortstop and turning a seamless double play.',
+    url: '/baseball-3.jpg',
+    accent: '#be185d',
+  },
+
+  // Other Signature Sports
+  {
     id: 'soccer',
     name: 'Soccer',
-    category: 'Field Sports',
+    category: 'Soccer',
     description: 'Quick footwork, tactical passing, and striking goals on the open pitch.',
     url: '/soccer.jpg',
     accent: '#9d174d',
@@ -38,7 +75,7 @@ const SPORTS_PHOTOS: SportPhoto[] = [
   {
     id: 'basketball',
     name: 'Basketball',
-    category: 'Court Sports',
+    category: 'Basketball',
     description: 'Fast breaks, precision dribbling, and soaring high to score at the rim.',
     url: '/basketball.jpg',
     accent: '#be185d',
@@ -46,41 +83,9 @@ const SPORTS_PHOTOS: SportPhoto[] = [
   {
     id: 'flag-football',
     name: 'Flag Football',
-    category: 'Agility Sports',
+    category: 'Flag Football',
     description: 'Agile route running, lightning acceleration, and clutch flag pulls.',
     url: '/flag-football.jpg',
-    accent: '#9d174d',
-  },
-  {
-    id: 'volleyball',
-    name: 'Volleyball',
-    category: 'Net Sports',
-    description: 'Synchronized team sets, diving digs, and high-flying spikes over the net.',
-    url: '/volleyball.jpg',
-    accent: '#be185d',
-  },
-  {
-    id: 'gymnastics',
-    name: 'Gymnastics',
-    category: 'Artistic Sports',
-    description: 'Grace, balance beam poise, strength, and flawless tumbling routines.',
-    url: '/gymnastics.jpg',
-    accent: '#9d174d',
-  },
-  {
-    id: 'swim',
-    name: 'Swim',
-    category: 'Aquatics',
-    description: 'Diving in off the blocks, powerful stroke technique, and speed in the lanes.',
-    url: '/swim.jpg',
-    accent: '#be185d',
-  },
-  {
-    id: 'tennis',
-    name: 'Tennis',
-    category: 'Racquet Sports',
-    description: 'Aces, rapid baseline rallies, and finesse volleys across the court.',
-    url: '/tennis.jpg',
     accent: '#9d174d',
   },
 ];
@@ -137,7 +142,7 @@ export function App() {
           </p>
 
           <p className="mt-3 text-neutral-600 text-sm max-w-lg mx-auto">
-            Featuring 9 signature sports in a 3&times;3 showcase: Football, Baseball, Soccer, Basketball, Flag Football, Volleyball, Gymnastics, Swim, and Tennis.
+            Featuring 3 Football highlights, 3 Baseball highlights, and signature sports in an equal 3&times;3 showcase.
           </p>
         </header>
 
