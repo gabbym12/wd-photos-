@@ -15,14 +15,14 @@ const NINE_PHOTOS: GridPhoto[] = [
     title: 'Football',
     description: 'Powerful plays, fast breaks, and the teamwork that makes every drive count.',
     category: 'Team Sports',
-    url: 'https://images.unsplash.com/photo-1508344928928-7165b67de128?auto=format&fit=crop&w=800&h=800&q=80',
+    url: 'https://images.unsplash.com/photo-1566577739112-5180d4bf9390?auto=format&fit=crop&w=800&h=800&q=80',
   },
   {
     id: 'photo-2',
     title: 'Baseball',
     description: 'A classic swing, a perfectly placed pitch, and the excitement of the diamond.',
     category: 'Team Sports',
-    url: 'https://images.unsplash.com/photo-1566577739112-5180d4bf9390?auto=format&fit=crop&w=800&h=800&q=80',
+    url: 'https://images.unsplash.com/photo-1508344928928-7165b67de128?auto=format&fit=crop&w=800&h=800&q=80',
   },
   {
     id: 'photo-3',
@@ -43,7 +43,7 @@ const NINE_PHOTOS: GridPhoto[] = [
     title: 'Flag Football',
     description: 'Agile routes, smart defense, and the excitement of a game built on speed.',
     category: 'Team Sports',
-    url: 'https://images.unsplash.com/photo-1517466787929-bc37dc4c4f5d?auto=format&fit=crop&w=800&h=800&q=80',
+    url: 'https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=800&h=800&q=80',
   },
   {
     id: 'photo-6',
