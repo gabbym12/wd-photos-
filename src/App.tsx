@@ -161,7 +161,10 @@ export function App() {
             id="page-title"
             className="text-4xl sm:text-6xl font-bold tracking-tight text-[#9d174d] mb-2 leading-tight drop-shadow-xs"
             style={{
-              fontFamily: "'Playfair Display', 'Cormorant Garamond', serif",
+              fontFamily: "'Great Vibes', cursive",
+              fontWeight: 500,
+              letterSpacing: '0.02em',
+              WebkitTextStroke: '0.2px currentColor',
             }}
           >
             Gabriella Miles
