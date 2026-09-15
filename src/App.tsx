@@ -90,6 +90,42 @@ const SPORTS_PHOTOS: SportPhoto[] = [
   },
 ];
 
+export interface SportRow {
+  id: string;
+  title: string;
+  rowLabel: string;
+  description: string;
+  photos: SportPhoto[];
+  startIndex: number;
+}
+
+const SPORT_ROWS: SportRow[] = [
+  {
+    id: 'row-football',
+    title: 'Football',
+    rowLabel: 'Row 1',
+    description: '3 Football Action Highlights',
+    photos: SPORTS_PHOTOS.slice(0, 3),
+    startIndex: 0,
+  },
+  {
+    id: 'row-baseball',
+    title: 'Baseball',
+    rowLabel: 'Row 2',
+    description: '3 Baseball Highlights',
+    photos: SPORTS_PHOTOS.slice(3, 6),
+    startIndex: 3,
+  },
+  {
+    id: 'row-basketball',
+    title: 'Basketball',
+    rowLabel: 'Row 3',
+    description: '3 Basketball Highlights',
+    photos: SPORTS_PHOTOS.slice(6, 9),
+    startIndex: 6,
+  },
+];
+
 export function App() {
   const [selectedPhoto, setSelectedPhoto] = useState<SportPhoto | null>(null);
   const [favorites, setFavorites] = useState<string[]>([]);
@@ -125,10 +161,7 @@ export function App() {
             id="page-title"
             className="text-4xl sm:text-6xl font-bold tracking-tight text-[#9d174d] mb-2 leading-tight drop-shadow-xs"
             style={{
-              fontFamily: "'Great Vibes', cursive",
-              fontWeight: 500,
-              letterSpacing: '0.02em',
-              WebkitTextStroke: '0.2px currentColor',
+              fontFamily: "'Playfair Display', 'Cormorant Garamond', serif",
             }}
           >
             Gabriella Miles
@@ -145,116 +178,146 @@ export function App() {
           </p>
 
           <p className="mt-3 text-neutral-600 text-sm max-w-lg mx-auto">
-            Featuring 3 Football highlights, 3 Baseball highlights, and 3 Basketball highlights in an equal 3&times;3 showcase.
+            Organized in 3 rows of 3 images: Football (Row 1), Baseball (Row 2), and Basketball (Row 3).
           </p>
         </header>
 
-        {/* 9 Sports in 3x3 Equal Dimensions Grid */}
-        <main id="sports-grid-container">
-          <div
-            id="sports-3x3-grid"
-            className="grid grid-cols-3 grid-rows-3 gap-4 sm:gap-8"
-          >
-            {SPORTS_PHOTOS.map((sport, index) => {
-              const isFav = favorites.includes(sport.id);
-              return (
-                <article
-                  key={sport.id}
-                  id={`sport-card-${sport.id}`}
-                  onClick={() => setSelectedPhoto(sport)}
-                  className="group cursor-pointer bg-white/95 backdrop-blur-xs rounded-2xl overflow-hidden border border-pink-200/90 shadow-[0_10px_30px_rgba(157,23,77,0.07)] hover:shadow-[0_20px_45px_rgba(157,23,77,0.16)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col"
-                >
-                  {/* Equal 1:1 Aspect Ratio Square Image Container */}
-                  <div className="relative w-full aspect-square overflow-hidden bg-pink-100/70">
-                    <img
-                      src={sport.url}
-                      alt={sport.name}
-                      loading={index < 3 ? 'eager' : 'lazy'}
-                      className="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
-                    />
+        {/* 9 Sports Organized in Rows of 3 */}
+        <main id="sports-grid-container" className="space-y-12 sm:space-y-16">
+          {SPORT_ROWS.map((row) => (
+            <section
+              key={row.id}
+              id={row.id}
+              className="bg-white/40 backdrop-blur-xs p-4 sm:p-6 lg:p-8 rounded-3xl border border-pink-200/70 shadow-[0_8px_30px_rgba(157,23,77,0.04)]"
+            >
+              {/* Row Header */}
+              <div className="flex items-center justify-between mb-5 pb-3 border-b border-pink-200/60">
+                <div className="flex items-center gap-3">
+                  <span className="text-[11px] sm:text-xs font-mono font-bold text-[#be185d] bg-pink-100/90 border border-pink-200 px-3 py-1 rounded-full uppercase tracking-wider">
+                    {row.rowLabel}
+                  </span>
+                  <h2
+                    className="text-2xl sm:text-3xl font-bold text-[#9d174d] tracking-tight"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
+                    {row.title}
+                  </h2>
+                </div>
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-[#be185d] font-semibold bg-pink-50/80 px-3 py-1 rounded-full border border-pink-100">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>3 Images</span>
+                </div>
+              </div>
 
-                    {/* Favorite Button on Top-Right */}
-                    <button
-                      id={`fav-btn-${sport.id}`}
-                      onClick={(e) => toggleFavorite(sport.id, e)}
-                      aria-label={`Favorite ${sport.name}`}
-                      className="absolute top-3 right-3 p-2 rounded-full bg-white/80 hover:bg-white backdrop-blur-md shadow-md text-pink-600 transition-transform active:scale-90"
+              {/* Row of 3 Equal Dimensions Images */}
+              <div
+                id={`grid-${row.id}`}
+                className="grid grid-cols-3 gap-3 sm:gap-6 lg:gap-8"
+              >
+                {row.photos.map((sport, colIdx) => {
+                  const overallIndex = row.startIndex + colIdx;
+                  const isFav = favorites.includes(sport.id);
+
+                  return (
+                    <article
+                      key={sport.id}
+                      id={`sport-card-${sport.id}`}
+                      onClick={() => setSelectedPhoto(sport)}
+                      className="group cursor-pointer bg-white/95 backdrop-blur-xs rounded-xl sm:rounded-2xl overflow-hidden border border-pink-200/90 shadow-[0_6px_20px_rgba(157,23,77,0.06)] hover:shadow-[0_16px_36px_rgba(157,23,77,0.14)] hover:-translate-y-1 transition-all duration-300 flex flex-col min-w-0"
                     >
-                      <Heart
-                        className={`w-4 h-4 ${isFav ? 'fill-pink-600 text-pink-600' : 'text-neutral-600'}`}
-                      />
-                    </button>
+                      {/* Equal 1:1 Aspect Ratio Square Image Container */}
+                      <div className="relative w-full aspect-square overflow-hidden bg-pink-100/70">
+                        <img
+                          src={sport.url}
+                          alt={sport.name}
+                          loading={overallIndex < 3 ? 'eager' : 'lazy'}
+                          className="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
+                        />
 
-                    {/* Sport Index Badge on Top-Left */}
-                    <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white font-mono text-[11px] px-2.5 py-0.5 rounded-full">
-                      0{index + 1}
-                    </div>
+                        {/* Favorite Button on Top-Right */}
+                        <button
+                          id={`fav-btn-${sport.id}`}
+                          onClick={(e) => toggleFavorite(sport.id, e)}
+                          aria-label={`Favorite ${sport.name} photo`}
+                          className="absolute top-2 right-2 sm:top-3 sm:right-3 p-1.5 sm:p-2 rounded-full bg-white/85 hover:bg-white backdrop-blur-md shadow-md text-pink-600 transition-transform active:scale-90"
+                        >
+                          <Heart
+                            className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isFav ? 'fill-pink-600 text-pink-600' : 'text-neutral-600'}`}
+                          />
+                        </button>
 
-                    {/* REQUIRED: Text on the BOTTOM OF THE IMAGE */}
-                    <div
-                      id={`bottom-label-${sport.id}`}
-                      className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent pt-8 pb-3 px-3.5 flex items-end justify-between text-white"
-                    >
-                      <div>
-                        <p className="text-[10px] tracking-widest text-pink-200 uppercase font-medium">
-                          Sport
-                        </p>
-                        <h2 className="text-base sm:text-lg font-bold tracking-wide uppercase drop-shadow-md text-white leading-tight">
-                          {sport.name}
-                        </h2>
+                        {/* Sport Index Badge on Top-Left */}
+                        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-black/60 backdrop-blur-md text-white font-mono text-[10px] sm:text-[11px] px-2 py-0.5 sm:px-2.5 sm:py-0.5 rounded-full">
+                          0{overallIndex + 1}
+                        </div>
+
+                        {/* REQUIRED: Text on the BOTTOM OF THE IMAGE */}
+                        <div
+                          id={`bottom-label-${sport.id}`}
+                          className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/55 to-transparent pt-6 sm:pt-8 pb-2 sm:pb-3 px-2 sm:px-3.5 flex items-end justify-between text-white"
+                        >
+                          <div className="min-w-0">
+                            <p className="text-[9px] sm:text-[10px] tracking-widest text-pink-200 uppercase font-medium truncate">
+                              Sport
+                            </p>
+                            <h3 className="text-xs sm:text-base lg:text-lg font-bold tracking-wide uppercase drop-shadow-md text-white leading-tight truncate">
+                              {sport.name}
+                            </h3>
+                          </div>
+                          <span className="hidden xs:inline-block text-[10px] sm:text-[11px] bg-white/25 backdrop-blur-xs px-2 py-0.5 rounded-full font-medium text-white/95 whitespace-nowrap ml-1">
+                            #{colIdx + 1}
+                          </span>
+                        </div>
+
+                        {/* Subtle Hover Action Layer */}
+                        <div className="absolute inset-0 bg-pink-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center justify-center">
+                          <span className="bg-white/90 text-[#9d174d] rounded-full p-2 sm:p-3 shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                            <ZoomIn className="w-4 h-4 sm:w-5 sm:h-5" />
+                          </span>
+                        </div>
                       </div>
-                      <span className="text-[11px] bg-white/25 backdrop-blur-xs px-2.5 py-0.5 rounded-full font-medium text-white/95">
-                        {sport.category}
-                      </span>
-                    </div>
 
-                    {/* Subtle Hover Action Layer */}
-                    <div className="absolute inset-0 bg-pink-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center justify-center">
-                      <span className="bg-white/90 text-[#9d174d] rounded-full p-3 shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                        <ZoomIn className="w-5 h-5" />
-                      </span>
-                    </div>
-                  </div>
+                      {/* Card Content Below Image */}
+                      <div className="p-3 sm:p-4 lg:p-5 flex-1 flex flex-col justify-between bg-white">
+                        <div>
+                          <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                            <span className="text-[10px] sm:text-[11px] uppercase tracking-wider font-semibold text-[#be185d] bg-pink-50 px-2 sm:px-2.5 py-0.5 rounded-full border border-pink-100">
+                              {sport.category}
+                            </span>
+                            <span className="text-[10px] sm:text-xs font-mono text-neutral-400">
+                              0{overallIndex + 1} / 09
+                            </span>
+                          </div>
 
-                  {/* Card Content Below Image */}
-                  <div className="p-5 flex-1 flex flex-col justify-between bg-white">
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-[11px] uppercase tracking-wider font-semibold text-[#be185d] bg-pink-50 px-2.5 py-0.5 rounded-full border border-pink-100">
-                          {sport.category}
-                        </span>
-                        <span className="text-xs font-mono text-neutral-400">
-                          0{index + 1} / 09
-                        </span>
+                          <h4
+                            id={`title-${sport.id}`}
+                            className="text-sm sm:text-lg lg:text-xl font-bold text-[#9d174d] mb-1 sm:mb-1.5 leading-snug group-hover:text-[#be185d] transition-colors truncate"
+                            style={{
+                              fontFamily: "'Playfair Display', serif",
+                            }}
+                          >
+                            {sport.name} #{colIdx + 1}
+                          </h4>
+
+                          <p
+                            id={`desc-${sport.id}`}
+                            className="text-neutral-600 text-xs sm:text-sm leading-relaxed line-clamp-2 sm:line-clamp-3"
+                          >
+                            {sport.description}
+                          </p>
+                        </div>
+
+                        <div className="mt-3 pt-2 sm:mt-4 sm:pt-3 border-t border-pink-100 flex items-center justify-between text-[11px] sm:text-xs text-[#be185d] font-medium">
+                          <span>View photo</span>
+                          <ZoomIn className="w-3 h-3 sm:w-3.5 sm:h-3.5 opacity-70" />
+                        </div>
                       </div>
-
-                      <h3
-                        id={`title-${sport.id}`}
-                        className="text-xl font-bold text-[#9d174d] mb-1.5 leading-snug group-hover:text-[#be185d] transition-colors"
-                        style={{
-                          fontFamily: "'Playfair Display', serif",
-                        }}
-                      >
-                        {sport.name}
-                      </h3>
-
-                      <p
-                        id={`desc-${sport.id}`}
-                        className="text-neutral-600 text-sm leading-relaxed"
-                      >
-                        {sport.description}
-                      </p>
-                    </div>
-
-                    <div className="mt-4 pt-3 border-t border-pink-100 flex items-center justify-between text-xs text-[#be185d] font-medium">
-                      <span>View details</span>
-                      <Sparkles className="w-3.5 h-3.5 opacity-70" />
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </section>
+          ))}
         </main>
 
         {/* Footer */}
