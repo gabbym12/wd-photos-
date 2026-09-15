@@ -126,15 +126,39 @@ const SPORT_ROWS: SportRow[] = [
   },
 ];
 
+export type ThinCursiveChoice = 'great-vibes' | 'alex-brush' | 'allura';
+
 export function App() {
   const [selectedPhoto, setSelectedPhoto] = useState<SportPhoto | null>(null);
   const [favorites, setFavorites] = useState<string[]>([]);
+  const [cursiveChoice, setCursiveChoice] = useState<ThinCursiveChoice>('great-vibes');
 
   const toggleFavorite = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
     setFavorites((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
+  };
+
+  const getThinCursiveStyle = () => {
+    switch (cursiveChoice) {
+      case 'alex-brush':
+        return {
+          fontFamily: "'Alex Brush', cursive",
+          fontWeight: 400,
+        };
+      case 'allura':
+        return {
+          fontFamily: "'Allura', cursive",
+          fontWeight: 400,
+        };
+      case 'great-vibes':
+      default:
+        return {
+          fontFamily: "'Great Vibes', cursive",
+          fontWeight: 400,
+        };
+    }
   };
 
   return (
@@ -152,27 +176,23 @@ export function App() {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header with Gabriella Miles and Date of Birth */}
         <header id="gallery-header" className="text-center mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-pink-100 border border-pink-200 text-[#9d174d] text-xs font-semibold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-pink-100 border border-pink-200 text-[#9d174d] text-xs font-semibold uppercase tracking-wider mb-2">
             <Trophy className="w-3.5 h-3.5" />
             <span>Sports Portfolio & Showcase</span>
           </div>
 
+          {/* User Name in Thin Cursive */}
           <h1
             id="page-title"
-            className="text-4xl sm:text-6xl font-bold tracking-tight text-[#9d174d] mb-2 leading-tight drop-shadow-xs"
-            style={{
-              fontFamily: "'Great Vibes', cursive",
-              fontWeight: 500,
-              letterSpacing: '0.02em',
-              WebkitTextStroke: '0.2px currentColor',
-            }}
+            className="text-6xl sm:text-8xl lg:text-9xl text-[#9d174d] mb-1 sm:mb-2 leading-none drop-shadow-[0_2px_10px_rgba(157,23,77,0.08)] transition-all duration-300 py-1"
+            style={getThinCursiveStyle()}
           >
             Gabriella Miles
           </h1>
 
           <p
             id="dob-text"
-            className="text-base sm:text-xl text-[#be185d] font-medium tracking-wide"
+            className="text-base sm:text-xl text-[#be185d] font-medium tracking-wide mb-3"
             style={{
               fontFamily: "'Playfair Display', 'Cormorant Garamond', serif",
             }}
@@ -180,7 +200,50 @@ export function App() {
             Date of Birth: 06/15/12
           </p>
 
-          <p className="mt-3 text-neutral-600 text-sm max-w-lg mx-auto">
+          {/* Thin Cursive Style Switcher */}
+          <div className="inline-flex items-center justify-center gap-1.5 p-1 bg-white/75 backdrop-blur-md rounded-2xl border border-pink-200/80 shadow-xs mb-4">
+            <span className="text-[11px] font-semibold text-neutral-500 uppercase tracking-wider px-2">
+              Thin Cursive Style:
+            </span>
+            <button
+              id="font-btn-great-vibes"
+              onClick={() => setCursiveChoice('great-vibes')}
+              className={`px-3 py-1 rounded-xl text-sm sm:text-base transition-all ${
+                cursiveChoice === 'great-vibes'
+                  ? 'bg-[#9d174d] text-white shadow-xs font-normal'
+                  : 'text-[#9d174d] hover:bg-pink-100/60'
+              }`}
+              style={{ fontFamily: "'Great Vibes', cursive" }}
+            >
+              Great Vibes (Classic)
+            </button>
+            <button
+              id="font-btn-alex-brush"
+              onClick={() => setCursiveChoice('alex-brush')}
+              className={`px-3 py-1 rounded-xl text-sm sm:text-base transition-all ${
+                cursiveChoice === 'alex-brush'
+                  ? 'bg-[#9d174d] text-white shadow-xs font-normal'
+                  : 'text-[#9d174d] hover:bg-pink-100/60'
+              }`}
+              style={{ fontFamily: "'Alex Brush', cursive" }}
+            >
+              Alex Brush (Refined)
+            </button>
+            <button
+              id="font-btn-allura"
+              onClick={() => setCursiveChoice('allura')}
+              className={`px-3 py-1 rounded-xl text-sm sm:text-base transition-all ${
+                cursiveChoice === 'allura'
+                  ? 'bg-[#9d174d] text-white shadow-xs font-normal'
+                  : 'text-[#9d174d] hover:bg-pink-100/60'
+              }`}
+              style={{ fontFamily: "'Allura', cursive" }}
+            >
+              Allura (Delicate)
+            </button>
+          </div>
+
+          <p className="mt-1 text-neutral-600 text-sm max-w-lg mx-auto">
             Organized in 3 rows of 3 images: Football (Row 1), Baseball (Row 2), and Basketball (Row 3).
           </p>
         </header>
